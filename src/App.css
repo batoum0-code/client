@@ -1,9 +1,46 @@
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-denim: #212c39;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .app-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 5px;
+  max-width: 1280px; 
+  margin: 0 auto ;
+  
   text-align: center;
-  background-color: rgb(226, 149, 149);
+  background-color: #fff;
 }
 
 .logo {
@@ -11,9 +48,11 @@
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -41,9 +80,3 @@
   color: #888;
 }
 
-
-
-
-body{
-  background-color: rgb(113, 80, 122);
-}

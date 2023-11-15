@@ -4,14 +4,23 @@ import { Context } from "../Context";
 import CartCount from "./cart/CartCount";
 import CartEmpty from "./cart/CartEmpty";
 import CartItem from './cart/CartItem'
-
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
- 
-   const { ifCartState , setIfCartState , cartSubTotal , cartItems } = useContext(Context);
 
-   const onCartToggle = () => {
+  // start navigate to the checkout page or other page 
+  const navigate = useNavigate();
+  // end navigate to the checkout page or other page 
+
+
+  // start get the element to handel cart changes 
+  const { ifCartState , setIfCartState , cartSubTotal , cartItems } = useContext(Context);
+  // end get the element to handel cart changes 
+
+  // start  handel show cart state
+    const onCartToggle = () => {
     setIfCartState(false);
   };
+  // end  handel show cart state
 
   
 
@@ -19,12 +28,12 @@ const Cart = () => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 bottom-0 blur-effect-theme duration-500 w-full h-screen opacity-100 z-[250] ${
+        className={`fixed top-0 left-0 right-0 bottom-0 duration-500 w-full h-screen blur-effect-theme opacity-100 z-[250] ${
           ifCartState
           ? "opacity-100 visible translate-x-0"
             : "opacity-0 invisible translate-x-8"
-       
-       }`}
+      
+      }`}
       >
         <div
           className={`blur-effect-theme duration-500 h-screen max-w-xl w-full absolute right-0 ${
@@ -38,7 +47,7 @@ const Cart = () => {
           <div>
             <div className="flex items-start justify-start flex-col gap-y-7 lg:gap-y-5 overflow-y-scroll h-[81vh] scroll-smooth scroll-hidden py-3">
               {cartItems?.map((item) => (
-                <CartItem key={item.id} item={item}/>
+                <CartItem key={`${item.id}-${item.attributes.size}`} item={item}/>
               ))}
             </div>
 
@@ -51,7 +60,10 @@ const Cart = () => {
                 <p className="text-sm font-medium text-center">Taxes and Shipping Will Calculate At Shipping</p>
                 {/* button that take you to the checkout page */}
                 <button type="button" className="button-theme bg-theme-cart text-white"
-                onClick={()=>console.log('ok')}
+                onClick={()=>{
+                  navigate('/checkout')
+                setIfCartState(false)}
+                }
                 >
                   Check Out</button>
               </div>

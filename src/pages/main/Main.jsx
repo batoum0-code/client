@@ -3,6 +3,7 @@ import Hero from '../../components/Hero'
 import Sales from '../../components/Sales'
 import FlexContent from '../../components/FlexContent'
 import Footer from '../../components/Footer'
+import HeroBanner from '../../components/HeroBanner'
 import { heroapi , popularsales , highlight ,toprateslaes , footerAPI} from '../../data/data'
 
 // import the useFetch hook 
@@ -47,17 +48,19 @@ const Main = () => {
    <>
    <div className={`app-container `}>
       <main className='flex flex-col gap-10 relative'>
-    <Hero heroapi={heroapi}/>
-   <Sales products={products} ifExists isTop={true}/>
-   <Sales products={products} isTop={false} />
-   <FlexContent endpoint={highlight} ifExists />
+
+  <Hero heroapi={heroapi}/>
+  <Sales products={products} ifExists isTop={true}/>
+  <Sales products={products} isTop={false} />
+  <FlexContent endpoint={highlight} ifExists />
+  
       </main>
-   </div>
-   <Footer footerAPI={footerAPI} />
+  </div>
+  <Footer footerAPI={footerAPI} />
 
-   <ScrollToTopButton/>
+  <ScrollToTopButton/>
 
-   </>
+  </>
 
     
   )
