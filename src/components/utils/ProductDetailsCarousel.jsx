@@ -9,7 +9,7 @@ const ProductDetailsCarousel = ({ images }) => {
                 infiniteLoop={true}
                 showIndicators={false}
                 showStatus={false}
-                thumbWidth={60}
+                thumbWidth={70}
                 className="productCarousel"
             >
                 {images?.data?.map((img) => (
@@ -20,12 +20,7 @@ const ProductDetailsCarousel = ({ images }) => {
                         
                     />
                 ))}
-                {/* <img src="/p2.png" />
-                <img src="/p3.png" />
-                <img src="/p4.png" />
-                <img src="/p5.png" />
-                <img src="/p6.png" />
-                <img src="/p7.png" /> */}
+                
             </Carousel>
         </div>
     );

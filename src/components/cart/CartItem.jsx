@@ -9,9 +9,9 @@ const CartItem = ({ item }) => {
     <>
       <div className="flex items-center justify-between w-full px-2  border-slate-600">
         <div className="flex items-center gap-5">
-          <div className={`bg-gradient-to-b  relative rounded p-1 hover:scale-105 transition-all duration-75 ease-in-out grid items-center`}>
+          <div className={`bg-gradient-to-b  relative rounded p-1  transition-all duration-75 ease-in-out grid items-center`}>
             <img src={`http://localhost:1337${item?.attributes?.image.data?.attributes?.url}`} alt='img' className="w-36  h-auto object-fill lg:w-28" />
-            <div className='absolute right-2 top-1 blur-theme-effect bg-green-600 text-black text-xs px-1 rounded'>${item.attributes.price}</div>
+            <div className='absolute right-2 top-1 blur-theme-effect bg-green-600 text-bSlight text-xs px-1 rounded'>{item.attributes.price}dh</div>
           </div>
           <div className="grid items-center gap-4">
             <div className="grid items-center leading-none">
@@ -19,7 +19,7 @@ const CartItem = ({ item }) => {
               <p className="text-sm text-slate-800 lg:text-xs">For {item?.attributes.categories.data[0].attributes.title}</p>
               <p className="text-sm text-slate-800 lg:text-xs"><span className="text-red-900">Size :</span> {item?.attributes.size}</p>
             </div>
-            <div className="flex items-center justify-around w-full">
+            <div className="flex items-center justify-around w-full gap-6">
               <button 
               onClick={()=>handelDecreaseQuantityInCart(item)}
               type="button"  className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90">

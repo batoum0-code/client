@@ -9,6 +9,12 @@ import {useParams} from 'react-router-dom'
 import {useFetch} from '../hooks/useFetch'
 // import context from the contextjs
 import { Context } from '../Context'
+import Navbar from "./Navbar";
+import Cart from "./Cart";
+import SideBar from './SideBar'
+import TopBar from './TopBar'
+// import delevery image
+
 
 
 
@@ -36,13 +42,13 @@ const SingleProduct = () => {
 
 
     const notify = () => {
-        toast.success("Success. Check your cart!", {
-            position: "bottom-right",
+        toast.success("Success. Vérifier le panier!", {
+            position: "bottom-left",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            pauseOnHover: false,
+            draggable: false,
             progress: undefined,
             theme: "dark",
         });
@@ -56,9 +62,9 @@ const SingleProduct = () => {
 
 
     // context management 
-  const { handleAddToCart , cartCount , cartItems} = useContext(Context);
+  const { handleAddToCart } = useContext(Context);
 
-  console.log(cartItems)
+
 
   const [ product , setProduct]= useState([])
 
@@ -100,10 +106,15 @@ const SingleProduct = () => {
 
 
     return (
-        <div className="w-full mt-[100px] md:py-20">
+        <div>
+            <TopBar/>
+            <Navbar/>
+            <Cart/>
+            <SideBar/>
+            <div className="w-full mt-[100px] md:py-20 ">
             <ToastContainer />
             <Wrapper>
-                <div className="flex flex-row lg:flex-row md:px-10 gap-[50px] lg:gap-[100px] md:flex-col">
+                <div className="flex flex-row lg:flex-row md:px-0 gap-[50px] lg:gap-[100px] md:flex-col">
                     {/* left column start */}
                     <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0 ">
                         <ProductDetailsCarousel images={product[0]?.attributes?.images} />
@@ -111,45 +122,66 @@ const SingleProduct = () => {
                     {/* left column end */}
 
                     {/* right column start */}
-                    <div className="flex-[1] py-3">
+                    <div className="flex-[1]  py-3">
                         {/* PRODUCT TITLE */}
-                        <div className="text-[34px] font-semibold mb-2 leading-tight">
+                        <div className="text-[34px] font-semibold sm:text-[25px] text-dark pb-[1px] leading-tight font-serif ">
                             {product[0]?.attributes.title}
                         </div>
 
                         {/* PRODUCT SUBTITLE */}
-                        <div className="text-lg font-semibold mb-5">
-                            for {product[0]?.attributes.categories.data[0]?.attributes.title}
+                        <div className="text-md sm:text-[18px] text-dark font-semibold pb-1">
+                            For {product[0]?.attributes.categories.data[0]?.attributes.title}
                         </div>
 
                         {/* PRODUCT PRICE */}
-                        <div className="flex items-center">
-                            <p className="mr-2 text-lg font-semibold">
-                            {product[0]?.attributes.price} dh
-                            </p>
+                        
+                            <div className=" text-lg text-green-500 font-semibold ">
+                            {product[0]?.attributes.price}  <span className="font-serif">DH</span>
+                            </div>
 
-                           {product[0]?.attributes.fakePrice && (
-                                <>
-                                    <p className="text-base  font-medium line-through">
+                            <div>
+                            {
+                            
+                            product[0]?.attributes.fakePrice && (
+                            
+                                    <div className="text-base py-1 font-medium  text-red-500 line-through">
                                         {product[0]?.attributes.fakePrice} DH
-                                    </p>
-                                    <p className="ml-auto text-base font-medium text-green-500">
-                                    {
-                                        ((product[0]?.attributes.fakePrice - product[0].attributes.price) * 100) / product[0]?.attributes.fakePrice
+                                    </div>  )
+                                    
+                            }
+                            </div>
 
-                                    } %
-                                         off
-                                        </p>
-                                </>
-                            )}
+                        <div>
+                            {
+                                product[0]?.attributes.fakePrice && (
+                                    <div className="ml-auto text-base font-medium text-red-900 pb-2">
+                                
+                                    -{
+                                        Math.ceil(((product[0]?.attributes.fakePrice - product[0].attributes.price) * 100) / product[0]?.attributes.fakePrice)
+
+                                    }%
+                            </div>
+                                )
+                            }
+                        </div>
+                        
+
+                        {/* product details  */}
+                        <div>
+                            <div className="text-lg font-semibold  pb-[2px]">
+                                Product Details
+                            </div>
+
+                            {/* enter your description for the product here */}
+
+                            <div className="markdown text-dark text-md font-serif pb-2">
+                            {product[0]?.attributes.description} 
+                                <ReactMarkdown> </ReactMarkdown>
+                            </div>
                         </div>
 
-                        <div className="text-md font-medium text-black/[0.5]">
-                            incl. of taxes
-                        </div>
-                        <div className="text-md font-medium text-black/[0.5] mb-20">
-                            {`(Also includes all applicable duties)`}
-                        </div>
+
+
 
                         {/* PRODUCT SIZE RANGE START */}
                         <div className="mb-10 ">
@@ -166,10 +198,10 @@ const SingleProduct = () => {
                             <div id="sizesGrid" className="grid grid-cols-4 gap-1 cursor-pointer">
                             
                                     <div
-                                        className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
+                                        className={`border rounded-md text-center py-1  font-medium hover:border-green-500 cursor-pointer
+                                        ${
                                             size === product[0]?.attributes.size1
-                                                ? "border-red-500"
+                                                ? "border-green-500"
                                                 : ""
                                         }`}
                                         onClick={() => {
@@ -181,10 +213,10 @@ const SingleProduct = () => {
                                         {product[0]?.attributes.size1}
                                     </div>
                                     <div
-                                        className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
+                                        className={`border rounded-md text-center py-1 font-medium hover:border-green-500 cursor-pointer
+                                        ${
                                             size === product[0]?.attributes.size2
-                                                ? "border-red-500"
+                                                ? "border-green-500"
                                                 : ""
                                         }`}
                                         onClick={() => {
@@ -196,10 +228,10 @@ const SingleProduct = () => {
                                         {product[0]?.attributes.size2}
                                     </div>
                                     <div
-                                        className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
+                                        className={`border rounded-lg text-center py-1 font-medium hover:border-green-500 cursor-pointer
+                                        ${
                                             size === product[0]?.attributes.size3
-                                                ? "border-red-500"
+                                                ? "border-green-400"
                                                 : ""
                                         }`}
                                         onClick={() => {
@@ -211,10 +243,10 @@ const SingleProduct = () => {
                                         {product[0]?.attributes.size3}
                                     </div>
                                     <div
-                                        className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
+                                        className={`border rounded-md text-center py-1 font-medium hover:border-green-500 cursor-pointer
+                                        ${
                                             size === product[0]?.attributes.size4
-                                                ? "border-red-500"
+                                                ? "border-green-500"
                                                 : ""
                                         }`}
                                         onClick={() => {
@@ -225,12 +257,12 @@ const SingleProduct = () => {
                                     >
                                         {product[0]?.attributes.size4}
                                     </div>
-                                  
+                                    
                                     <div
-                                        className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
+                                        className={`border rounded-md text-center py-1 font-medium hover:border-green-500 cursor-pointer
+                                        ${
                                             size === product[0]?.attributes.size5
-                                                ? "border-red-500"
+                                                ? "border-green-500"
                                                 : ""
                                         }`}
                                         onClick={() => {
@@ -241,97 +273,99 @@ const SingleProduct = () => {
                                     >
                                         {product[0]?.attributes.size5}
                                     </div>
-                                   <div className={`border rounded-md text-center py-1 font-medium "hover:border-black cursor-pointer"
-                                          ${
-                                            size === product[0]?.attributes.size5
-                                                ? "border-red-500"
+                                    <div className={`border rounded-md text-center py-1 font-medium hover:border-green-500 cursor-pointer
+                                        ${
+                                            size === product[0]?.attributes.size6
+                                                ? "border-green-500"
                                                 : ""
                                         }`}
                                         onClick={() => {
-                                            setSize(product[0]?.attributes.size5);
+                                            setSize(product[0]?.attributes.size6);
                                             setSelectedSize(true);
                                             setShowError(false);
                                         }}
                                     >
-                                        {product[0]?.attributes.size5}
+                                        {product[0]?.attributes.size6}
                                     </div>
                                 
                             </div>
                             {/* SIZE END */}
 
-                            {/* SHOW ERROR START */}
                             
-                            {/* SHOW ERROR END */}
                         </div>
                         {/* PRODUCT SIZE RANGE END */}
 
                         
                           {/** FIN SIZES SECTION */}
-                          <div className="mb-5 flex items-center">
+                        <div className="mb-5 flex items-center">
                         <button
-                            className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-2"
+                            className="w-9 h-9 bg-black  rounded-[9px] flex items-center justify-center mr-2"
                             onClick={handleDecrement}
                         >
-                            <span className="text-lg">-</span>
+                            <span className="text-lg font-medium text-bSlight">-</span>
                         </button>
-                        <div className="text-lg font-medium">{quantity}</div>
+                        <div className="text-xl font-semibold font-sans">{quantity}</div>
                         <button
-                            className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center ml-2"
+                            className="w-9 h-9 bg-black rounded-[9px] flex items-center justify-center ml-2 " 
                             onClick={handleIncrement}
                         >
-                            <span className="text-lg">+</span>
+                            <span className="text-lg font-medium text-bSlight">+</span>
                         </button>
                     </div>
 
                     {/* ADD TO CART BUTTON START */}
                         
                     <button
-                     className="w-full py-2 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
-                     onClick={() => {
-                       if (!size) {
-                         setShowError(true);
-                         document
-                           .getElementById("sizesGrid")
-                           .scrollIntoView({
-                             block: "center",
-                             behavior: "smooth",
-                           });
-                       } else {
-                         handleAddToCart(
+                    className="w-full py-2 md:rounded-full bg-black text-white text-lg 
+                    rounded-[30px] tracking-widest shadow-md
+                    font-medium transition-transform active:scale-95 mb-3 hover:opacity-100"
+                    onClick={() => {
+                    if (!size) {
+                        setShowError(true);
+                        document
+                        .getElementById("sizesGrid")
+                        .scrollIntoView({
+                        block: "center",
+                        behavior: "smooth",
+                        });
+                    } else {
+                        handleAddToCart(
                             product[0],
                             quantity,
                             size
-                           
-                         );
-                   
-                         setQuantity(1);
-                         notify();
-                       }
-                     }}
-                   >
-                     Add to Cart
-                   </button>
+                        );
+                        setQuantity(1);
+                        notify();
+                        }
+                    }}
+                    >
+                    Ajouter Au Panier
+                </button>
                         {/* ADD TO CART BUTTON END */}
 
+                        {/* marketing informaitions */}
+
+                        <div className="text-md font-medium text-grayDark">
+                        Home-Fit Service Gratuit
+                        </div>
+                        <div className="text-md font-medium text-grayDark mb-2">
+                        Paiement à la livraison après essayage et satisfaction.
+                        
+                        </div>
                         
 
-                        <div>
-                            <div className="text-lg font-bold mb-5">
-                                Product Details
-                            </div>
-
-                            {/* enter your description for the product here */}
-
-                            <div className="markdown text-md mb-5">
-                                <ReactMarkdown> Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iure nam sed modi officiis error veniam, suscipit minima maiores fugiat temporibus rerum quia reprehenderit atque animi nostrum eligendi tempore ullam! </ReactMarkdown>
-                            </div>
-                        </div>
+                        
                     </div>
                     {/* right column end */}
                 </div>
 
-               
+            
             </Wrapper>
+        </div>
+        <div className="flex  w-full flex-row  justify-between text-black bg-gradient-to-l from-bSdenim to-dark ">
+        <h4 className="font-semibold  text-bSlight w-[160px]   border-r-[1px] border-bSlight "> OFFRE SPÉCIALE </h4>
+        <span className="p-2  text-bSlight w-full">Obtenez une réduction de 100 DH en achetant deux paires et économisez 300 DH en achetant trois paires.  OFFRE SPÉCIALE  </span>
+        </div>
         </div>
     );
 };

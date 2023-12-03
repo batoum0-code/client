@@ -6,8 +6,9 @@ export const Context = createContext();
 const ContextProvider = ({children}) => {
 
   
-  // state to display the shopping cart without changing path
+  // state to display the shopping cart and also the website elements  without changing path
   const [ifCartState , setIfCartState] = useState(false);
+  const [ifShowElements , setIfShowElements ] = useState(false);
   // end state to display the shopping cart without changing path
   const [searchValue , setSearchValue] = useState('');
     const [products, setProducts] = useState([]);
@@ -127,7 +128,7 @@ const ContextProvider = ({children}) => {
 
      // handel increase quantity of product in shopping cart 
 
-     const handelDecreaseQuantityInCart = (product) => {
+    const handelDecreaseQuantityInCart = (product) => {
       let items = [...cartItems];
     items.map( (item)=>{
       if( item.id === product.id && item.attributes.size === product.attributes.size && item.attributes.quantity > 1){
@@ -153,7 +154,9 @@ const ContextProvider = ({children}) => {
   
     <Context.Provider value={{ ifCartState , setIfCartState ,   handleAddToCart, cartSubTotal,handelDecreaseQuantityInCart ,
         handleRemoveFromCart ,cartCount ,cartItems , handleIncreaseQuantity, handleDecreaseQuantity ,handelIncreaseQuantityInCart
-        , searchValue , setSearchValue , handelCleaningCart }}>
+        , searchValue , setSearchValue , handelCleaningCart 
+        ,ifShowElements , setIfShowElements
+        }}>
         {
             children
         }

@@ -1,26 +1,31 @@
 import React from 'react'
+import { Link  ,useNavigate } from 'react-router-dom'
+import img from '../assets/forFlexContent.png'
+const FlexContent = ({ifExists}) => {
 
-const FlexContent = ({ ifExists, endpoint: { title, heading, text, img, btn, url } }) => {
+  const navigate = useNavigate();
   return (
-   <>
-      <div className={`flex items-center justify-between lg:flex-col lg:justify-center mb-10  ${ifExists ? 'flex-row-reverse' : 'flex-row'}`}>
-        <div className='max-w-lg lg:max-w-none w-full md:text-center grid items-center lg:justify-items-center'>
-          <h1 className='text-4xl sm:text-3xl font-bold text-gradient'>{heading}</h1>
-          <h1 className='text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 filter drop-shadow-lg'>{title}</h1>
-          <p className='xl:text-sm my-4 text-slate-900'>{text}</p>
-          <a href={url} className="flex items-center" target={"_blank"} role="button">
-            <button type='button' className='button-theme bg-slate-900 shadow-slate-900 text-slate-100 py-1.5'>{btn}</button>
-          </a>
-        </div>
-        <div className='flex items-center justify-center max-w-xl relative lg:max-w-none w-full'>
+    <>
+
+      <div className={`flex items-center justify-center   lg:flex-col lg:justify-center mb-10  ${ifExists ? 'flex-row-reverse' : 'flex-row'}`}>
+      <div className='flex items-center justify-center max-w-xl w-[70%] relative lg:max-w-none '>
           <img
             src={img}
-            alt={`img/${heading}`}
-            className={`w-auto object-fill transitions-theme ${ifExists ? 'h-60 lg:h-56 md:h-52 sm:h-44 xsm:h-36 rotate-6 hover:-rotate-12' : 'h-72 lg:h-64 md:h-60 sm:h-48 xsm:h-40 rotate-[19deg] hover:rotate-12'}`}
+            alt='image'
+            className={`object-fill transitions-theme  ${ifExists ? 'h-[400px] w-[400px] lg:h-56  md:h-44 md:w-44 xsm:h-36 hover:-rotate-180' : ' duration-[10s] transform h-72 lg:h-64 md:h-60 sm:h-48 sm:w-48 xsm:h-40 rotate-[19deg]  '}`}
           />
         </div>
+        <div className='max-w-lg lg:max-w-none w-[30%] md:text-center grid  lg:justify-items-center justify-center items-center'>
+          <h1 className='text-4xl sm:text-3xl font-bold text-black uppercase'> l'élégance  </h1>
+          <h1 className='text-4xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 filter drop-shadow-lg uppercase py-1'>cherti moccassins </h1>
+          <p className='xl:text-sm my-4 text-bSlight text-lg font-serif  py-3 tracking-wide'>Vous êtes à la recherche de mocassins alliant confort et élégance 🙄? Ne cherchez pas plus loin, Cherti Chaussures est l'endroit idéal pour trouver ce que vous recherchez 😇👌.</p>
+          <div onClick={()=> navigate('/about')} className="" >
+            <button type='button' className='button-theme hover:scale-105 sm:py-1 transition-all duration-300 bg-bSorange shadow-slate-900 text-slate-100 py-1.5'>Decouvrir Plus</button>
+          </div>
+        </div>
+        
       </div>
-   </>
+    </>
   )
 }
 

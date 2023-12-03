@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlayIcon } from "@heroicons/react/24/solid";
-
+import ved from '../../assets/video/2.mp4'
+import img1 from '../../assets/chertie-logo.png'
 const Clips = ({ clip, imgsrc }) => {
   return (
    <>
@@ -20,7 +21,7 @@ const Clips = ({ clip, imgsrc }) => {
             playsInline={true}
             className="absolute top-0 left-0 right-0 flex h-full w-full object-cover opacity-0 z-0 group-hover:opacity-100 group-hover:z-50 rounded-xl"
         >
-            <source type='video/mp4' src={clip} />
+            <source type='video/mp4' src={ved} />
         </video>
       </div>
    </>
