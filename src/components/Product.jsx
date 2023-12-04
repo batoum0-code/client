@@ -11,7 +11,7 @@ const Product = ({item}) => {
     className='relative  max-w-[300px] max-h-[360px]  rounded-lg bg-slate-200 overflow-hidden cursor-pointer 
       flex items-center justify-start'>
 
-    <img src={`http://localhost:1337${item?.attributes?.image.data?.attributes?.url}`} alt="product" className='object-cover hover:scale-90 duration-700 max-w-[290px] max-h-[300px] xsm:max-h-[300px] xsm:max-w-[290px]' />
+    <img src={`https://server-qyse.onrender.com/${item?.attributes?.image.data?.attributes?.url}`} alt="product" className='object-cover hover:scale-90 duration-700 max-w-[290px] max-h-[300px] xsm:max-h-[300px] xsm:max-w-[290px]' />
 
     
       <h3 className='absolute top-[10px] left-3 text-green-600 font-semibold'>
