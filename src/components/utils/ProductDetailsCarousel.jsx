@@ -15,7 +15,7 @@ const ProductDetailsCarousel = ({ images }) => {
                 {images?.data?.map((img) => (
                     <img
                         key={img.id}
-                        src={`http://localhost:1337${img?.attributes?.url}`}
+                        src={`https://server-qyse.onrender.com${img?.attributes?.url}`}
                         alt={img}
                         
                     />
