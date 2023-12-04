@@ -75,7 +75,7 @@ const Item = ({
           }`}
         >
           <img
-            src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.url}`}
+            src={`https://server-qyse.onrender.com/${item?.attributes?.image?.data?.attributes?.url}`}
             alt={`img`}
             className={`transitions-theme hover:-rotate-12  blur-none  ${
               ifExists
