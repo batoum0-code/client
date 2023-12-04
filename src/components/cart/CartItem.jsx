@@ -10,7 +10,7 @@ const CartItem = ({ item }) => {
       <div className="flex items-center justify-between w-full px-2  border-slate-600">
         <div className="flex items-center gap-5">
           <div className={`bg-gradient-to-b  relative rounded p-1  transition-all duration-75 ease-in-out grid items-center`}>
-            <img src={`http://localhost:1337${item?.attributes?.image.data?.attributes?.url}`} alt='img' className="w-36  h-auto object-fill lg:w-28" />
+            <img src={`https://server-qyse.onrender.com${item?.attributes?.image.data?.attributes?.url}`} alt='img' className="w-36  h-auto object-fill lg:w-28" />
             <div className='absolute right-2 top-1 blur-theme-effect bg-green-600 text-bSlight text-xs px-1 rounded'>{item.attributes.price}dh</div>
           </div>
           <div className="grid items-center gap-4">
