@@ -15,7 +15,7 @@ const Item = ({ ifExists, item, isTop }) => {
     const title = item?.attributes?.title || 'No Title';
     const category = item?.attributes?.categories?.data[0]?.attributes?.title || 'Unknown';
     const price = item?.attributes?.price || 'N/A';
-    const imageUrl = `https://server-qyse.onrender.com/${item?.attributes?.image?.data?.attributes?.url}`;
+    const imageUrl = `https://server-qyse.onrender.com${item?.attributes?.image?.data?.attributes?.url}`;
   
     return (
       <div className={`relative bg-gradient-to-b bg-slate-200 grid items-center max-w-[100%] ${ifExists ? "justify-items-start pb-[3.5rem]" : "justify-items-center shadow-md"} ${!isTop ? "h-[350px] w-[300px] flex items-center" : ""} py-0 px-3 transition-all duration-300 ease-in-out w-full`}>
