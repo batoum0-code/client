@@ -13,7 +13,7 @@ const Hero = () => {
         <button 
         onClick={()=>navigate('/products/men')}
         className='hover:scale-105 sm:py-1 transition-all duration-300 bg-amber-950 text-fuchsia-200 rounded-md
-          p-[10px] px-[30px] text-[30px] cursor-pointer'>batoum samir</button>
+          p-[10px] px-[30px] text-[30px] cursor-pointer'>produits</button>
       </section>
   </>
   )
