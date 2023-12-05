@@ -18,7 +18,7 @@ const Item = ({ ifExists, item, isTop }) => {
     const imageUrl = `https://server-qyse.onrender.com${item?.attributes?.image?.data?.attributes?.url}`;
   
     return (
-      <div className={`relative bg-gradient-to-b bg-slate-200 grid items-center max-w-[100%] ${ifExists ? "justify-items-start pb-[3.5rem]" : "justify-items-center shadow-md"} ${!isTop ? "h-[350px] w-[300px] flex items-center" : ""} py-0 px-3 transition-all duration-300 ease-in-out w-full`}>
+      <div className={`relative rounded-lg bg-gradient-to-b bg-slate-200 grid items-center max-w-[100%] ${ifExists ? "justify-items-start pb-[3.5rem]" : "justify-items-center shadow-md"} ${!isTop ? "h-[350px] w-[300px] flex items-center" : ""} py-0 px-3 transition-all duration-300 ease-in-out w-full`}>
         <div className={`grid gap-9${ifExists ? "justify-items-center" : "justify-items-center"}`}>
           <h1 className="text-black text-2xl lg:text-lg md:text-base font-semibold filter drop-shadow">{title}</h1>
           <p className="text-grayDark filter drop-shadow text-base md:text-sm font-normal flex">For {category}</p>
@@ -38,7 +38,7 @@ const Item = ({ ifExists, item, isTop }) => {
             <button
               onClick={() => Navigate(`/product/${item.id}`)}
               type="button"
-              className="bg-black blur-effect-theme md:text-sm px-3 py-1 shadow shadow-black text-lg font-medium text-white 
+              className="bg-black rounded-md blur-effect-theme md:text-sm px-3 py-1 shadow shadow-black text-lg font-medium text-white 
                 transition-all duration-300 border-[1px] border-black hover:border-black hover:bg-white  hover:text-black"
             >
               Acheter
